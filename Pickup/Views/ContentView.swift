@@ -2,9 +2,13 @@ import SwiftUI
 
 
 struct Home: View {
+    
+    
+    var onLogout: () -> Void
+    
     @StateObject private var viewModel = OrdersListViewModel()
     
-    @State private var isLoggedIn: Bool = true;
+    //@State private var isLoggedIn: Bool = true;
 
     var body: some View {
         NavigationStack{
@@ -17,7 +21,8 @@ struct Home: View {
                     Menu {
                         Button("Logout", role: .destructive) {
                             UserDefaultsManager.clearUserData()
-                            isLoggedIn.toggle()
+                            //isLoggedIn = false
+                            onLogout()
                         }
                     } label: {
                         Image(systemName: "ellipsis.circle")
@@ -151,6 +156,8 @@ struct Home: View {
 
 struct HomePreview: PreviewProvider {
     static var previews: some View {
-        Home()
+        Home(onLogout: {
+            
+        })
     }
 }

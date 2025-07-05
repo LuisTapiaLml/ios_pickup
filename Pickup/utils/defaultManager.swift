@@ -17,8 +17,8 @@ struct UserDefaultsManager {
         UserDefaults.standard.removeObject(forKey: usernameKey)
     }
     
-    static func getToken() -> String? {
-            UserDefaults.standard.string(forKey: tokenKey)
+        static func getToken() -> String? {
+            return UserDefaults.standard.string(forKey: tokenKey)
         }
 
         static func getUsername() -> String {

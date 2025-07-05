@@ -11,6 +11,8 @@ import SwiftUI
 
 struct Login : View {
     
+    var onLogin: () -> Void
+    
     @StateObject private var viewModel = LoginViewModel()
     @State private var isLoggedIn = false
 
@@ -55,7 +57,7 @@ struct Login : View {
                     print("Se envia login")
                     viewModel.login(onSuccess: {
                         print("se logeo bien --------------------")
-                        isLoggedIn = true
+                        onLogin()
                     })
                 }
                     .padding()
@@ -79,7 +81,7 @@ struct Login : View {
                 .navigationBarHidden(true)
                 .background(Color.bg.ignoresSafeArea(edges: .all))
                 .navigationDestination(isPresented: $isLoggedIn) {
-                    Home()
+                    Home(onLogout: onLogin )
                 }
         }
         
@@ -92,6 +94,8 @@ struct Login : View {
 
 struct LoginPreview: PreviewProvider {
     static var previews: some View {
-        Login()
+        Login(onLogin: {
+            
+        })
     }
 }
