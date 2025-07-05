@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct PickupApp: App {
+    @State private var isLoggedIn: Bool = UserDefaultsManager.getToken() != nil
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isLoggedIn {
+                        Home()
+                    } else {
+                        Login()
+                    }
+            
         }
     }
 }
