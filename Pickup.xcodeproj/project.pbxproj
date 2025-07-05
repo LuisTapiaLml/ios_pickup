@@ -14,9 +14,22 @@
 		1246FACB2E0E73B900A4E0AC /* Pickup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pickup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1246FBD52E19391500A4E0AC /* Exceptions for "Pickup" folder in "Pickup" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1246FACA2E0E73B900A4E0AC /* Pickup */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1246FACD2E0E73B900A4E0AC /* Pickup */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1246FBD52E19391500A4E0AC /* Exceptions for "Pickup" folder in "Pickup" target */,
+			);
 			path = Pickup;
 			sourceTree = "<group>";
 		};
@@ -264,6 +277,7 @@
 				DEVELOPMENT_TEAM = SS247Y8UW6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Pickup/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Esta app necesita acceso a la cámara para escanear códigos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -298,6 +312,7 @@
 				DEVELOPMENT_TEAM = SS247Y8UW6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Pickup/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Esta app necesita acceso a la cámara para escanear códigos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

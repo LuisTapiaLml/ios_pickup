@@ -14,6 +14,10 @@ public struct OrderDetailView: View {
     let orderID: Int
     @StateObject private var viewModel = OrdersDetailViewModel()
     @State private var showAlert = false
+    @State private var showConfirmAlert = false
+    @State private var showMissingSerialAlert = false
+
+    @State private var showEntregarAlert = false
     
     
     public var body: some View {
@@ -68,12 +72,17 @@ public struct OrderDetailView: View {
 
                         HStack {
                             Text("Total:").bold()
+                                .foregroundColor(.text)
                             Spacer()
                             if let total = Double(order.totalAmount) {
                                 //Text(String(format: "$%.2f MXN", total))
                                 Text("$\(String(format: "%.2f", total)) MXN")
+                                
+                                    .foregroundColor(.text)
                             } else {
                                 Text("$\(order.totalAmount) MXN")
+                                
+                                    .foregroundColor(.text)
                             }
                         }.padding()
 
@@ -84,22 +93,61 @@ public struct OrderDetailView: View {
                                 }
                                 .alert("Rechazar", isPresented: $showAlert) {
                                             Button("Cancelar", role: .cancel) { }
-                                            Button("Confirmar", role: .destructive) {
+                                            Button("Rechazar", role: .destructive) {
                                                 // Acción al confirmar
                                                 print("Acción confirmada")
+                                                showAlert = false
                                                 viewModel.updateOrderStatus(orderId: order.id, status: "Cancelado")
+                                                
                                             }
                                         } message: {
                                             Text("¿Estás seguro de que deseas rechazar el pedido?")
                                         }
                                 .padding().background(Color.red).foregroundColor(.white).cornerRadius(8)
                                 Spacer()
-                                Button("Confirmar") { /* confirm endpoint */ }
-                                    .padding().background(Color.green).foregroundColor(.white).cornerRadius(8)
+                                Button("Confirmar") {
+                                    // Check all serial numbers first
+                                    let allFilled = order.orderDetails.allSatisfy { detail in
+                                        detail.serialNumbers.allSatisfy { $0.numSerie != "" }
+                                    }
+                                    
+                                    if !allFilled {
+                                        showMissingSerialAlert = true
+                                    } else {
+                                        showConfirmAlert = true
+                                    }
+                                }
+                                .padding().background(Color.green).foregroundColor(.white).cornerRadius(8)
+                                .alert("Error", isPresented: $showMissingSerialAlert) {
+                                    Button("Aceptar", role: .cancel) { }
+                                } message: {
+                                    Text("Falta ingresar un número de serie en uno o más productos")
+                                }
+                                .alert("Confirmar", isPresented: $showConfirmAlert) {
+                                    Button("Cancelar", role: .cancel) { }
+                                    Button("Confirmar", role: .destructive) {
+                                        viewModel.updateOrderStatus(orderId: order.id, status: "Confirmado")
+                                    }
+                                } message: {
+                                    Text("¿Estás seguro de que deseas Confirmar el pedido?")
+                                }
+                            
                             }.padding()
                         } else if order.status == "Confirmado" {
-                            Button("Entregar") { /* scan + confirm */ }
-                                .padding().background(Color.blue).foregroundColor(.white).cornerRadius(8).padding()
+                            HStack{
+                                Button("Entregar") {
+                                    showEntregarAlert = true
+                                }
+                                    .padding().background(Color.blue).foregroundColor(.white).cornerRadius(8)
+                                    .alert("Entregar", isPresented: $showEntregarAlert) {
+                                        Button("Cancelar", role: .cancel) { }
+                                        Button("Entregar", role: .destructive) {
+                                            viewModel.updateOrderStatus(orderId: order.id, status: "Entregado")
+                                        }
+                                    } message: {
+                                        Text("¿Estás seguro de que deseas Entregar el pedido?")
+                                    }
+                            }.padding()
                         }
                     }
                 }

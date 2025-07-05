@@ -12,7 +12,7 @@ import Foundation
 class APIService {
     static let shared = APIService()
     private init() {}
-    private let baseURL =  "http://192.168.50.100:3000/api"
+    private let baseURL =  "http://142.93.205.108:3000/api"
     
     private var headers: HTTPHeaders {
         if let token = UserDefaults.standard.string(forKey: "token") {

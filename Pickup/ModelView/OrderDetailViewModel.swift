@@ -48,9 +48,12 @@ class OrdersDetailViewModel: ObservableObject {
                 switch result {
                 case .success(let order):
                     
+                    print("actualizando orden")
+                    self?.errorMessage = "Estatus Actualizado con éxito."
                     self?.refresh(orderId: orderId)
                     
                 case .failure(let error):
+                    print("error al actualizar orden")
                     self?.errorMessage = "Error al actualizar estatus de pedido."
                     print("Failed to load order: \(error)")
                 }
