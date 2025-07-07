@@ -15,7 +15,7 @@ struct Home: View {
             VStack(spacing: 16) {
                 // Header
                 HStack {
-                    Image("logo").resizable().frame(width: 40, height: 40)
+                    Image("logo").resizable().frame(width: 60, height: 40)
                     Spacer()
                     Text(viewModel.username).foregroundColor(.text)
                     Menu {
@@ -77,6 +77,7 @@ struct Home: View {
                 if viewModel.isLoading {
                     ProgressView()
                         .frame(maxHeight: .infinity)
+                        .background(.bg)
                 } else if let error = viewModel.errorMessage {
                     VStack {
                         Text("Error: \(error)")
@@ -86,6 +87,7 @@ struct Home: View {
                         }
                     }
                     .frame(maxHeight: .infinity)
+                    .background(.bg)
                 } else {
                     List {
                         ForEach(viewModel.orders) { order in
