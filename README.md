@@ -92,3 +92,30 @@ si los productos no necesitan numero de serie, la orden se puede confirmar sin n
   <img src="https://res.cloudinary.com/dslnjpd7t/image/upload/v1751858424/pikcup/Captura_de_pantalla_2025-07-06_a_la_s_9.19.35_p.m._yoxtj3.png" width="250" style="margin-right: 10px;" />
   <img src="https://res.cloudinary.com/dslnjpd7t/image/upload/v1751858354/pikcup/Captura_de_pantalla_2025-07-06_a_la_s_9.16.35_p.m._nh61fm.png" width="250" />
 </p>
+
+
+---
+
+# Pickup    
+
+La aplicacion de pickup esta pensada como una actualización de la aplicacion que actualmente ocupa la empresa, fue desarrollada en xamarin y presenta problemas de compatibilidad con los ides en ios y sobre todo problemas de funcionalidad. Por lo que se considera necesario una nueva version para evitar errores recurrentes dentro de la aplicacion 
+
+El logo es sencillo, se quizo algo autodescriptivo por lo que es el mismo nombre de la aplicación (Pickup)
+
+Debido a que los dispositivos en las tiendas son variados, se opto por una maxima compatibilidad, haciendo uso como minumimo del API 24 en android y iOS v16.6
+
+Ya que en su mayoria las vistas son listas de items, se opto por fijar las vista en portrait para una mejor experiencia del usuario.
+
+## Depencencias
+
+### iOS
+- Alamofire 
+
+
+### iOS
+- retrofit
+- gson
+- lifecycle.runtime.ktx
+- splashscreen
+
+
